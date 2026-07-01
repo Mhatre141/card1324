@@ -271,13 +271,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 char.style.opacity = 1;
                 char.style.filter = 'none'; /* Completely remove filter to prevent subpixel text blurriness */
                 char.classList.add('glow-text');
-            }, index * 15);
+            }, index * 25);
         });
 
         // Dissolve coalescing title and transition back to primary titles
         setTimeout(() => {
             chars.forEach((char) => {
-                char.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                char.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
                 char.style.opacity = 0;
                 char.style.transform = 'translate3d(0, -30px, 0) scale3d(0.7, 0.7, 1)';
                 char.style.filter = 'blur(8px)';
@@ -322,9 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 30);
                 }, 400);
 
-            }, 800);
+            }, 1200);
 
-        }, chars.length * 15 + 1800);
+        }, chars.length * 25 + 3800);
     };
 
     // Fade centerpiece heart in
