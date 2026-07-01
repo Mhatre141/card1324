@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>With Love - A Special Surprise For You</title>
+    <meta name="description" content="A premium, interactive romantic experience created with endless love.">
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Linked Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Linked Script -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Dynamic Canvas Particle Layer -->
+    <canvas id="magic-canvas" aria-hidden="true"></canvas>
+
+    <!-- Hidden SVG Definitions for Premium Gradients -->
+    <svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg"
+        style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+        <defs>
+            <linearGradient id="gold-gradient-svg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#bf953f" />
+                <stop offset="25%" stop-color="#fcf6ba" />
+                <stop offset="50%" stop-color="#b38728" />
+                <stop offset="75%" stop-color="#fbf5b7" />
+                <stop offset="100%" stop-color="#aa771c" />
+            </linearGradient>
+            <linearGradient id="heart-grad-svg" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ff758f" />
+                <stop offset="40%" stop-color="#ff4d6d" />
+                <stop offset="100%" stop-color="#8b0000" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- SECTION 6: Cursor Glow Layer -->
+    <!-- Ambient glow element that follows the user's cursor for a premium dynamic effect -->
+    <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- SECTION 5: Music Button -->
+    <!-- Persistent floating audio controller -->
+    <div class="music-controller-wrapper">
+        <button id="music-toggle" class="btn-music-toggle" aria-label="Play romantic music" aria-pressed="false">
+            <!-- Sound Waves / Speaker SVG Icon -->
+            <svg class="icon-music-on" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg class="icon-music-off hidden" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+        </button>
+        <!-- Background Audio Element -->
+        <audio id="romantic-bg-music" loop preload="auto">
+            <source src="assets/music/romantic-melody.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- SECTION 1: Full Screen Animated Intro Section -->
+    <section id="intro-section" class="intro-section" aria-label="Introduction">
+        <!-- Animated Background Container -->
+        <div class="intro-bg" aria-hidden="true"></div>
+
+        <!-- Star Atmosphere Layer (CSS Twitch) -->
+        <div id="intro-stars" class="stars-container" aria-hidden="true"></div>
+
+        <!-- Main Introduction Content Card -->
+        <div class="intro-card-wrapper">
+            <div class="intro-card glassmorphism-card">
+                <!-- Large Animated Centerpiece Heart -->
+                <div class="large-heart-wrapper" aria-hidden="true">
+                    <svg class="large-animated-heart" viewBox="0 0 24 24" width="120" height="120"
+                        fill="url(#heart-grad-svg)">
+                        <path
+                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                </div>
+
+                <!-- Intro Typography -->
+                <h1 id="intro-title" class="intro-title">A Journey of Love</h1>
+                <p id="intro-subtitle" class="intro-subtitle">A special page crafted exclusively for a wonderful soul
+                </p>
+
+                <!-- Action Button -->
+                <button id="btn-open-heart" class="btn btn-primary btn-open-heart"
+                    aria-label="Open My Heart and enter the website">
+                    Open My Heart <span class="emoji-heart" aria-hidden="true">❤️</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Main Love Website -->
+    <main id="main-love-content" class="main-love-content hidden" aria-label="Love Story Portal">
+
+        <!-- SECTION 2: Poem Section (Now First) -->
+        <section id="poem-section" class="poem-section" aria-label="Love Poem">
+            <!-- Ambient backgrounds for the Poem section -->
+            <div class="poem-bg-decor" aria-hidden="true"></div>
+
+            <div class="container poem-container">
+                <!-- Elegant Title -->
+                <h3 class="poem-title">A Symphony of Words</h3>
+
+                <!-- Long Emotional Poem Area -->
+                <article class="poem-body-wrapper glassmorphism-card">
+                    <div class="poem-text-content">
+                        <p class="poem-verse">
+                            I looked at the stars and wondered why,<br>
+                            They painted beauty across the sky.<br>
+                            But then you smiled, and in your grace,<br>
+                            No star could match your beautiful face.
+                        </p>
+                        <p class="poem-verse">
+                            Your hand in mine, a perfect fit,<br>
+                            In winter’s cold, the fire is lit.<br>
+                            A gentle whisper, a tender glance,<br>
+                            With you, my life is a cosmic dance.
+                        </p>
+                        <p class="poem-verse">
+                            Through every storm and golden sun,<br>
+                            You are my start, my only one.<br>
+                            With every breath and heartbeat new,<br>
+                            I fall in love again with you.
+                        </p>
+                    </div>
+
+                    <!-- Animated "I Love You ❤️" -->
+                    <div class="animated-love-footer" aria-live="polite">
+                        <span class="animated-love-message">I Love You <span class="heart-pulse"
+                                aria-hidden="true">❤️</span></span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+
+        <!-- SECTION 4: Passcode Entry Section -->
+        <section id="passcode-section" class="passcode-section" aria-label="Unlock Private Area">
+            <div class="container passcode-container">
+                <div class="passcode-card-wrapper">
+                    <article class="passcode-card glassmorphism-card">
+                        <div class="card-decorations" aria-hidden="true">
+                            <svg class="decor-icon decor-top-left" viewBox="0 0 100 100" width="40" height="40"
+                                fill="currentColor">
+                                <path
+                                    d="M50 15c-10-15-30-15-40 0s-10 30 10 50l30 30 30-30c20-20 20-35 10-50s-30-15-40 0z" />
+                            </svg>
+                            <svg class="decor-icon decor-bottom-right" viewBox="0 0 100 100" width="40" height="40"
+                                fill="currentColor">
+                                <path
+                                    d="M50 15c-10-15-30-15-40 0s-10 30 10 50l30 30 30-30c20-20 20-35 10-50s-30-15-40 0z" />
+                            </svg>
+                        </div>
+                        <div class="card-header">
+                            <span class="date-badge">Security Lock</span>
+                            <h3 class="card-title">Unlock Our Secret Space</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="lock-quote">
+                                "Enter the special passcode you were given to unlock our private space..."
+                            </p>
+                            <div class="passcode-input-wrapper">
+                                <input type="password" id="passcode-input" placeholder="Enter code here..."
+                                    autocomplete="off" />
+                                <div id="passcode-error" class="passcode-error hidden">
+                                    <span class="emoji">❌</span> Code is incorrect. Hint: Check the coupon code from the
+                                    timeline!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer-controls">
+                            <button id="btn-verify-passcode" class="btn btn-primary">
+                                Verify & Open <span class="emoji" aria-hidden="true">🔑</span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Private Gallery & Confession (Initially Locked/Hidden) -->
+        <section id="gallery-section" class="gallery-section hidden" aria-label="Our Private Gallery">
+            <div class="container gallery-container">
+                <!-- Confession Card -->
+                <article class="confession-card glassmorphism-card">
+                    <div class="popup-header">
+                        <div class="popup-icon-wrapper" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor" class="popup-gift-icon">
+                                <path
+                                    d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4V8h16v11z" />
+                            </svg>
+                        </div>
+                        <h4 class="popup-title">A Sweet Confession</h4>
+                    </div>
+                    <div class="popup-body">
+                        <p class="popup-message">
+                            You make my world infinitely brighter just by being in it. Every moment with you is a
+                            treasure, and every memory we make is my favorite story. Thank you for being my love, my
+                            best friend, and my happy place.
+                        </p>
+                        <!-- Love coupon -->
+                        <div class="love-coupon" aria-hidden="true">
+                            <div class="coupon-border">
+                                <span class="coupon-title">LIFETIME LOVE COUPON</span>
+                                <span class="coupon-subtitle">Good for 1,000,000 warm hugs & kisses</span>
+                                <span class="coupon-code"> </span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo Frames Gallery -->
+                <div class="gallery-header-wrapper">
+                    <h3 class="gallery-title">Our Memory Frames</h3>
+                    <p class="gallery-subtitle">Placeholders for our beautiful moments together</p>
+                </div>
+
+                <div class="gallery-frames">
+                    <div class="photo-frame">
+                        <div class="photo-placeholder">
+                            <div class="frame-overlay-glow"></div>
+                            <img src="assets/images/photo1.jpg" alt="Memory 1" class="frame-image"
+                                onerror="if(this.src.endsWith('.jpg')){this.src=this.src.replace('.jpg','.jpeg')}else if(this.src.endsWith('.jpeg')){this.src=this.src.replace('.jpeg','.png')}else if(this.src.endsWith('.png')){this.src=this.src.replace('.png','.webp')}else{this.style.display='none';}" />
+                            <svg class="placeholder-heart" viewBox="0 0 24 24" width="48" height="48"
+                                fill="currentColor">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                            <p class="frame-label">Frame 1</p>
+                            <p class="frame-desc">Add assets/images/photo1.jpg</p>
+                        </div>
+                    </div>
+                    <div class="photo-frame">
+                        <div class="photo-placeholder">
+                            <div class="frame-overlay-glow"></div>
+                            <img src="assets/images/photo2.jpg" alt="Memory 2" class="frame-image"
+                                onerror="if(this.src.endsWith('.jpg')){this.src=this.src.replace('.jpg','.jpeg')}else if(this.src.endsWith('.jpeg')){this.src=this.src.replace('.jpeg','.png')}else if(this.src.endsWith('.png')){this.src=this.src.replace('.png','.webp')}else{this.style.display='none';}" />
+                            <svg class="placeholder-heart" viewBox="0 0 24 24" width="48" height="48"
+                                fill="currentColor">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                            <p class="frame-label">Frame 2</p>
+                            <p class="frame-desc">Add assets/images/photo2.jpg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Footer -->
+        <footer class="love-footer">
+            <div class="footer-container">
+                <p class="footer-love-text">Written with Endless Love</p>
+                <p class="footer-author">Your Pintya <span class="emoji" aria-hidden="true">❤️</span></p>
+                <p class="footer-for">For:Myy Mauuu... <span class="recipient-name"></span></p>
+            </div>
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

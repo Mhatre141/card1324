@@ -1,0 +1,1389 @@
+/* ==========================================================================
+   1. FONT IMPORTS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Parisienne&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================================================
+   2. SYSTEM VARIABLES & THEME CONFIGURATION
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --deep-red: #1b0004;
+    --wine-red: #4a0e17;
+    --crimson: #8b0000;
+    --bright-rose: #ff4d6d;
+    --soft-pink: #ffccd5;
+    --cream: #fff0f3;
+    
+    /* Gold Accent Gradients & Colors */
+    --gold: #d4af37;
+    --gold-bright: #ffd700;
+    --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    
+    /* Typography Font Families */
+    --font-ui: 'Poppins', 'Montserrat', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+    --font-display: 'Cinzel Decorative', serif;
+    --font-calligraphy: 'Great Vibes', 'Parisienne', 'Alex Brush', 'Dancing Script', cursive;
+    
+    /* Glassmorphism Specs */
+    --glass-bg: rgba(27, 0, 4, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-glow: rgba(212, 175, 55, 0.15);
+    
+    /* Shadow Utilities */
+    --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --shadow-luxury: 0 30px 60px 0 rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+    --glow-crimson: 0 0 20px rgba(139, 0, 0, 0.6);
+    --glow-gold: 0 0 25px rgba(212, 175, 55, 0.45);
+}
+
+/* ==========================================================================
+   3. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    height: -webkit-fill-available;
+}
+
+body {
+    font-family: var(--font-ui);
+    background-color: var(--deep-red);
+    color: var(--cream);
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    line-height: 1.6;
+    perspective: 1000px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--deep-red);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--wine-red);
+    border-radius: 4px;
+    border: 2px solid var(--deep-red);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--crimson);
+}
+
+/* Hidden Utility State */
+.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+/* Dynamic Hardware-Accelerated Canvas Layer */
+#magic-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    will-change: transform;
+}
+
+/* Container Structure */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ==========================================================================
+   4. KEYFRAME ANIMATIONS (Motion Engine)
+   ========================================================================== */
+
+/* Animated Gradient Background */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Rotating Decorative Vectors */
+@keyframes slowRotate {
+    0% { transform: rotate3d(0, 0, 1, 0deg); }
+    100% { transform: rotate3d(0, 0, 1, 360deg); }
+}
+
+/* Floating Animation for Icons/Orbs */
+@keyframes floatY {
+    0% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -12px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Pulse / Heartbeat Animation */
+@keyframes heartbeat {
+    0% { transform: scale3d(1, 1, 1); }
+    14% { transform: scale3d(1.08, 1.08, 1); }
+    28% { transform: scale3d(1, 1, 1); }
+    42% { transform: scale3d(1.08, 1.08, 1); }
+    70% { transform: scale3d(1, 1, 1); }
+}
+
+/* Soft Background Blur Movement */
+@keyframes blurDrift {
+    0% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+    50% { transform: translate3d(5vw, 5vh, 0) scale3d(1.15, 1.15, 1); }
+    100% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+}
+
+/* Twinkle effect for Stars */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale3d(0.85, 0.85, 1); }
+    50% { opacity: 1; transform: scale3d(1.2, 1.2, 1); }
+}
+
+/* Ambient Ray Rotation */
+@keyframes rayRotate {
+    0% { transform: rotate3d(0, 0, 1, 0deg); }
+    100% { transform: rotate3d(0, 0, 1, 360deg); }
+}
+
+/* Glow Shimmer Overlay Sweep */
+@keyframes shimmerSweep {
+    0% { transform: translate3d(-150%, 0, 0) rotate3d(0, 0, 1, 45deg); }
+    100% { transform: translate3d(150%, 0, 0) rotate3d(0, 0, 1, 45deg); }
+}
+
+/* ==========================================================================
+   5. PARTICLE & AMBIENT LAYER DEFINITIONS
+   ========================================================================== */
+
+/* Star Backdrop Container */
+.stars-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Sparkling Stars Generator (CSS Shadow Duplication) */
+.stars-container::before,
+.stars-container::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 
+        15vw 10vh 2px #fff, 85vw 15vh 1px var(--soft-pink), 5vw 85vh 2px #fff,
+        95vw 80vh 2px #fff, 45vw 20vh 1px var(--gold-bright), 35vw 70vh 2px #fff,
+        75vw 60vh 1px #fff, 25vw 35vh 2px var(--soft-pink), 55vw 90vh 1px #fff,
+        65vw 30vh 2px var(--gold-bright), 12vw 55vh 1px #fff, 88vw 45vh 2px #fff;
+    animation: twinkle 6s infinite ease-in-out;
+    will-change: transform, opacity;
+}
+.stars-container::after {
+    width: 3px;
+    height: 3px;
+    box-shadow: 
+        30vw 5vh 3px var(--gold-bright), 70vw 25vh 2px #fff, 10vw 90vh 2px var(--soft-pink),
+        80vw 85vh 3px #fff, 50vw 40vh 2px #fff, 20vw 60vh 3px #fff,
+        60vw 50vh 2px var(--gold-bright), 40vw 80vh 2px #fff, 90vw 10vh 3px var(--soft-pink);
+    animation-delay: -3s;
+    animation-duration: 8s;
+}
+
+/* ==========================================================================
+   6. CURSOR GLOW & LIGHT RAYS
+   ========================================================================== */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(139, 0, 0, 0.03) 45%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    transform: translate3d(-50%, -50%, 0);
+    mix-blend-mode: screen;
+    filter: blur(50px);
+    transition: opacity 0.5s ease;
+    opacity: 0.85; /* Soft visual presence by default */
+    will-change: transform, opacity;
+}
+
+/* Ambient Background Light Rays in Intro & Hero */
+.intro-bg::before,
+.hero-bg-elements::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 180deg at 50% 50%,
+        transparent 0deg,
+        transparent 150deg,
+        rgba(212, 175, 55, 0.03) 180deg,
+        transparent 210deg,
+        transparent 360deg
+    );
+    animation: rayRotate 40s infinite linear;
+    z-index: 1;
+    will-change: transform;
+}
+
+/* ==========================================================================
+   7. MUSIC CONTROLLER (Floating UI Component)
+   ========================================================================== */
+.music-controller-wrapper {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+.btn-music-toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+    will-change: transform;
+}
+
+.btn-music-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    color: var(--gold-bright);
+}
+
+.btn-music-toggle:active {
+    transform: scale(0.95);
+}
+
+.btn-music-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-music-toggle:hover svg {
+    transform: rotate(15deg);
+}
+
+/* ==========================================================================
+   8. SECTION 1: FULL SCREEN ANIMATED INTRO
+   ========================================================================== */
+.intro-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: -webkit-fill-available;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+    background: linear-gradient(135deg, var(--deep-red), var(--wine-red), #32030a, var(--deep-red));
+    background-size: 300% 300%;
+    animation: gradientBG 20s infinite ease-in-out;
+    will-change: opacity, transform;
+}
+
+.intro-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle at center, rgba(139, 0, 0, 0.25) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.intro-card-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 550px;
+    padding: 2px;
+    border-radius: 28px;
+    background: var(--gold-gradient);
+    box-shadow: var(--shadow-luxury), var(--glow-crimson);
+}
+
+.glassmorphism-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    border-radius: 26px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer overlay effect for premium cards */
+.glassmorphism-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.12);
+    transform: rotate(45deg);
+    animation: shimmerSweep 9s infinite ease-in-out;
+    pointer-events: none;
+}
+
+/* Centerpiece Large Heart Styling */
+.large-heart-wrapper {
+    margin-bottom: 2rem;
+    display: inline-block;
+    will-change: transform;
+}
+
+.large-animated-heart {
+    fill: url(#heart-grad-svg);
+    color: var(--crimson);
+    filter: drop-shadow(0 0 25px rgba(255, 77, 109, 0.8)) drop-shadow(0 0 10px rgba(139, 0, 0, 0.9));
+    animation: heartbeat 1.4s infinite ease-in-out;
+    transform-origin: center;
+    will-change: transform;
+}
+
+/* Typography styles */
+.intro-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.intro-subtitle {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    font-weight: 300;
+    color: var(--soft-pink);
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+}
+
+/* Custom premium buttons */
+.btn {
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1.1rem 2.8rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    will-change: transform;
+}
+
+.btn-primary {
+    background: var(--gold-gradient);
+    color: var(--deep-red);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Button Shimmer */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.btn:hover::after {
+    transform: translate(50%, 50%) rotate(45deg);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6), 0 0 25px rgba(255, 255, 255, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(-2px);
+}
+
+.emoji-heart {
+    display: inline-block;
+    animation: heartbeat 1.2s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   9. SECTION 2: MAIN LOVE PORTAL & HERO
+   ========================================================================== */
+.main-love-content {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(180deg, var(--deep-red) 0%, var(--wine-red) 50%, var(--deep-red) 100%);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity;
+}
+
+.hero-section {
+    position: relative;
+    padding: 8rem 0 6rem 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Luxury Soft Background blur elements */
+.hero-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+}
+
+/* 3D Glass Orbs using linear/radial gradient */
+.hero-bg-elements::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: -10vw;
+    width: 35vw;
+    height: 35vw;
+    min-width: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.15) 0%, rgba(139, 0, 0, 0.05) 50%, transparent 80%);
+    filter: blur(60px);
+    animation: blurDrift 20s infinite ease-in-out alternate;
+    will-change: transform;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.heading-wrapper {
+    text-align: center;
+    will-change: transform, opacity;
+}
+
+/* Luxury Animated Heading */
+.luxury-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.6));
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.romantic-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--soft-pink);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   10. THE LOVE CARD (Glassmorphism, 3D and Reflection)
+   ========================================================================== */
+.love-card-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    width: 100%;
+    will-change: transform, opacity;
+}
+
+.love-card {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    transform-style: preserve-3d;
+    box-shadow: var(--shadow-luxury);
+    will-change: transform;
+}
+
+/* Reflection Highlight overlay */
+.love-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--reflection-x, 50%) var(--reflection-y, 50%), rgba(255, 255, 255, 0.12) 0%, transparent 50%);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 3;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+/* Card Hover Interactions */
+.love-card:hover {
+    transform: translate3d(0, -10px, 0) rotateX(3deg) rotateY(-3deg) scale3d(1.02, 1.02, 1);
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), 0 0 30px var(--glass-glow);
+}
+
+.love-card:hover::before {
+    opacity: 1;
+}
+
+/* Floating SVG Icons in corners */
+.card-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.decor-icon {
+    position: absolute;
+    color: var(--gold);
+    opacity: 0.45;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.decor-top-left {
+    top: 1.5rem;
+    left: 1.5rem;
+    animation: floatY 6s infinite ease-in-out, slowRotate 24s infinite linear;
+}
+
+.decor-bottom-right {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    animation: floatY 6s infinite ease-in-out, slowRotate 24s infinite linear;
+    animation-delay: -3s;
+}
+
+.love-card:hover .decor-icon {
+    opacity: 0.9;
+    color: var(--gold-bright);
+    filter: drop-shadow(0 0 8px var(--gold));
+}
+
+/* Card Structure */
+.card-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1.5rem;
+}
+
+.date-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.4rem 1.2rem;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.card-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    color: #fff;
+}
+
+/* Card Body Content */
+.card-body {
+    transform: translateZ(30px); /* 3D depth effect */
+}
+
+.love-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    position: relative;
+    padding: 0 1rem;
+}
+
+/* Visual Snapshot Frame */
+.love-card-visuals {
+    margin: 2.5rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.visual-frame {
+    background: rgba(0, 0, 0, 0.4);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background 0.4s ease;
+}
+
+.love-card:hover .visual-frame {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.visual-placeholder {
+    color: var(--wine-red);
+    transition: all 0.5s ease;
+}
+
+.placeholder-heart {
+    animation: heartbeat 1.5s infinite ease-in-out;
+    filter: drop-shadow(0 0 12px var(--crimson));
+}
+
+.love-card:hover .visual-placeholder {
+    color: var(--bright-rose);
+    transform: scale(1.1);
+}
+
+/* Buttons in Card Footer */
+.card-footer-controls {
+    margin-top: 2rem;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+    background: var(--gold-gradient);
+    color: var(--deep-red);
+    transform: translate3d(0, -3px, 0);
+    box-shadow: var(--glow-gold);
+}
+
+/* ==========================================================================
+   11. SECTION 3: POEM SECTION
+   ========================================================================== */
+.poem-section {
+    position: relative;
+    padding: 8rem 0;
+    background: radial-gradient(circle at center, rgba(74, 14, 23, 0.3) 0%, transparent 80%);
+    will-change: transform, opacity;
+}
+
+.poem-bg-decor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+}
+
+.poem-container {
+    max-width: 800px;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.poem-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 3.5rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.poem-body-wrapper {
+    box-shadow: var(--shadow-luxury);
+    padding: 4.5rem 3rem;
+    will-change: transform, opacity;
+}
+
+/* Calligraphic handwriting effect */
+.poem-text-content {
+    font-family: var(--font-calligraphy);
+    font-size: clamp(1.5rem, 3.8vw, 2.4rem);
+    line-height: 1.8;
+    color: var(--cream);
+    letter-spacing: 1px;
+}
+
+.poem-verse {
+    margin-bottom: 3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    opacity: 0.95;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.poem-verse:hover {
+    transform: scale3d(1.03, 1.03, 1);
+    opacity: 1;
+}
+
+/* Animated Love Message underneath poem */
+.animated-love-footer {
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 2rem;
+}
+
+.animated-love-message {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--gold), var(--soft-pink), var(--gold));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerSweep 6s infinite linear;
+}
+
+.heart-pulse {
+    display: inline-block;
+    animation: heartbeat 1.2s infinite ease-in-out;
+    filter: drop-shadow(0 0 5px rgba(255, 77, 109, 0.7));
+}
+
+/* ==========================================================================
+   12. SECTION 4: SURPRISE POPUP (Hidden dialog)
+   ========================================================================== */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: -webkit-fill-available;
+    background: rgba(15, 0, 3, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity;
+}
+
+/* Active Popup state */
+.popup-overlay:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup-container {
+    width: 90%;
+    max-width: 600px;
+    transform: scale3d(0.9, 0.9, 1) translate3d(0, 40px, 0);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.popup-overlay:not(.hidden) .popup-container {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+}
+
+.popup-content {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 0, 0, 0.3);
+    padding: 3.5rem 3rem;
+}
+
+/* Elegant Close Button */
+.btn-close-popup {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--soft-pink);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, color 0.4s ease;
+    will-change: transform;
+}
+
+.btn-close-popup:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gold-bright);
+    border-color: var(--gold);
+    transform: rotate3d(0, 0, 1, 90deg);
+}
+
+/* Popup Header Content */
+.popup-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.popup-icon-wrapper {
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+.popup-gift-icon {
+    animation: floatY 4s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+    will-change: transform;
+}
+
+.popup-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Popup Body content */
+.popup-body {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.popup-message {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+/* Virtual Love Coupon design */
+.love-coupon {
+    border: 2px dashed var(--gold);
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: rgba(212, 175, 55, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.love-coupon::before,
+.love-coupon::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #250207; /* Matches overlay color context */
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.love-coupon::before { left: -10px; }
+.love-coupon::after { right: -10px; }
+
+.coupon-border {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.coupon-title {
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--gold-bright);
+}
+
+.coupon-subtitle {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--soft-pink);
+}
+
+.coupon-code {
+    font-family: monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--cream);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+.popup-footer {
+    text-align: center;
+}
+
+/* ==========================================================================
+   13. SECTION 7: FOOTER
+   ========================================================================== */
+.love-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(18, 0, 3, 0.8);
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.footer-love-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--soft-pink);
+    letter-spacing: 1px;
+}
+
+.footer-author {
+    font-family: var(--font-calligraphy);
+    font-size: 2.2rem;
+    color: var(--gold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.footer-for {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.5;
+}
+
+.recipient-name {
+    color: var(--gold-bright);
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   14. MEDIA QUERIES & RESPONSIVE DESIGNS
+   ========================================================================== */
+
+/* Tablet Screens (1024px and below) */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+/* Mobile Screens (768px and below) */
+@media screen and (max-width: 768px) {
+    .btn-music-toggle {
+        width: 44px;
+        height: 44px;
+        top: 1.5rem;
+        right: 1.5rem;
+    }
+    
+    .intro-card {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .hero-section {
+        padding: 6rem 0 4rem 0;
+    }
+    
+    .love-card {
+        padding: 2rem 1.2rem;
+    }
+    
+    .poem-section {
+        padding: 5rem 0;
+    }
+    
+    .poem-body-wrapper {
+        padding: 2.5rem 1.2rem;
+    }
+    
+    .popup-content {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .coupon-title {
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
+    }
+}
+
+/* Small Device Adjustments (480px and below) */
+@media screen and (max-width: 480px) {
+    .btn {
+        padding: 1rem 2.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   15. PASSCODE SECTION & INTERACTIVE GALLERY
+   ========================================================================== */
+.passcode-section {
+    padding: 8rem 0;
+    position: relative;
+    z-index: 1001; /* Elevated above canvas to avoid pointer block */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.passcode-card-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1002;
+    pointer-events: auto;
+}
+
+.passcode-card {
+    pointer-events: auto;
+}
+
+.passcode-card .card-body {
+    transform: none !important; /* Disable 3D depth to prevent browser clipping / blocking inputs */
+    pointer-events: auto !important;
+}
+
+.passcode-input-wrapper {
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1003;
+    pointer-events: auto !important;
+}
+
+#passcode-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    color: var(--cream);
+    background: rgba(27, 0, 4, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1004;
+}
+
+#passcode-input:focus {
+    outline: none;
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.35), inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: scale3d(1.02, 1.02, 1);
+}
+
+.passcode-error {
+    color: #ff4d6d;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+    animation: pulseGlow 1.5s infinite ease-in-out;
+}
+
+.passcode-card .card-footer-controls {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1003;
+    pointer-events: auto !important;
+}
+
+.passcode-card .btn {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1004;
+}
+
+/* Shake Animation for incorrect password */
+.shake-element {
+    animation: shakeEffect 0.5s ease-in-out;
+}
+
+@keyframes shakeEffect {
+    0%, 100% { transform: translateX(0); }
+    15%, 45%, 75% { transform: translateX(-8px); }
+    30%, 60%, 90% { transform: translateX(8px); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+/* Gallery Layout */
+.gallery-section {
+    padding: 8rem 0;
+    position: relative;
+    z-index: 1001; /* Elevated above canvas to avoid pointer block */
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+}
+
+.confession-card {
+    width: 100%;
+    max-width: 750px;
+    padding: 3rem;
+    text-align: center;
+}
+
+.gallery-header-wrapper {
+    text-align: center;
+}
+
+.gallery-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--gold-bright);
+    text-shadow: var(--glow-gold);
+    letter-spacing: 2px;
+}
+
+.gallery-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--soft-pink);
+    margin-top: 0.5rem;
+}
+
+.gallery-frames {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* Photo Frames Styling */
+.photo-frame {
+    flex: 1;
+    max-width: 320px;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    padding: 1.2rem;
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow-luxury);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.5s ease, box-shadow 0.5s ease;
+    cursor: pointer;
+    will-change: transform;
+}
+
+.photo-frame:hover {
+    transform: translateY(-15px) rotateZ(1deg) scale3d(1.03, 1.03, 1);
+    border-color: var(--gold);
+    box-shadow: 0 20px 45px rgba(212, 175, 55, 0.3), var(--shadow-luxury);
+}
+
+.frame-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10;
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+}
+
+.photo-frame:hover .frame-image {
+    transform: scale(1.05);
+}
+
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    background: rgba(27, 0, 4, 0.4);
+    transition: background 0.4s ease;
+}
+
+.photo-frame:hover .photo-placeholder {
+    background: rgba(27, 0, 4, 0.2);
+    border-color: var(--gold-bright);
+}
+
+.placeholder-heart {
+    color: rgba(255, 77, 109, 0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.4s ease;
+    animation: heartbeat 2s infinite ease-in-out;
+}
+
+.photo-frame:hover .placeholder-heart {
+    color: var(--bright-rose);
+    transform: scale3d(1.2, 1.2, 1);
+}
+
+.frame-label {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+}
+
+.frame-desc {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--soft-pink);
+    opacity: 0.8;
+}
+
+.frame-overlay-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 30%, rgba(212, 175, 55, 0.05), transparent 70%);
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    opacity: 0.5;
+}
+
+.photo-frame:hover .frame-overlay-glow {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   16. MEDIA QUERY ADDITIONS (Mobile Responsiveness)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .passcode-section,
+    .gallery-section {
+        padding: 5rem 0;
+    }
+    
+    .confession-card {
+        padding: 2rem 1.2rem;
+    }
+    
+    .gallery-title {
+        font-size: 1.8rem;
+    }
+    
+    .gallery-frames {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .photo-frame {
+        max-width: 280px;
+        aspect-ratio: 3 / 4;
+    }
+}
